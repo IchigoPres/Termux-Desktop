@@ -21,6 +21,7 @@ pulseaudio --start \
  --exit-idle-time=-1
 
 # Start GPU server
+# uncomment this if needed
 virgl_test_server_android &
 
 # Start Termux X11
@@ -66,25 +67,43 @@ dbus-daemon --session --fork --print-address
 startxfce4
 '
 
-
-# ---Packages Required---
-# ---In Termux---
+# In Termux
+#
 # pkg install x11-repo
-# pkg install termux-x11-nightly virglrenderer-android pulseaudio proot-distro
-
-# ---Install archlinux---
-# proot-distro install debian
-
-# ---In ArchLinux (inside proot)---
-# pkg update
-# pkg install xfce4 xfce4-goodies dbus-x11 mesa-utils
-
-# ---Test GPU Acceleration---
-# ---Inside XFCE terminal run---
+# pkg install termux-x11-nightly
+# pkg install virglrenderer-android
+# pkg install pulseaudio
+# pkg install proot-distro
+# pkg install mesa-demos
+#
+# Optional
+#
+# pkg install dbus
+# pkg install xorg-xhost
+#
+# In Debian Proot Distro
+#
+# apt install -y \
+# xfce4 \
+# xfce4-goodies \
+# dbus-x11 \
+# mesa-utils \
+# x11-xserver-utils \
+# xauth \
+# sudo \
+# nano
+#
+# Optional
+#
+# apt install -y thunar-archive-plugin file-roller xfce4-terminal
+#
+# Test in debian
+#
+# GPU test
+#
 # glxinfo | grep OpenGL
-# ---Expected---
-# OpenGL renderer string: virgl
-
-# ---Performance Tips
-# ---Disable XFCE compositor (big FPS gain):---
-# ---Settings -> Window Manager Tweaks -> Compositor -> Disable
+#
+# expected output
+#
+# OpenGL rende
+rer string: virgl
