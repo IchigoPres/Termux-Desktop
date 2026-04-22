@@ -105,5 +105,4 @@ startxfce4
 #
 # expected output
 #
-# OpenGL rende
-rer string: virgl
+# OpenGL renderer string: virgl
