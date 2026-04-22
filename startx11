@@ -1,9 +1,15 @@
 #!/data/data/com.termux/files/usr/bin/bash
 
 pkill -9 termux.x11
+pkill -9 virgl_test_server_android
 
 # Start audio
 #pulseaudio --start --exit-idle-time=-1
+
+#Test
+MESA_NO_ERROR=1 MESA_GL_VERSION_OVERRIDE=4.3COMPAT MESA_GLES_VERSION_OVERRIDE=3.2 GALLIUM_DRIVER=zink ZINK_DESCRIPTORS=lazy virgl_test_server --use-egl-surfaceless --use-gles &
+
+virgl_test_server_android &
 
 # Start PulseAudio
 pulseaudio --start --exit-idle-time=-1 --load="module-native-protocol-tcp auth-ip-acl=127.0.0.1 auth-anonymous=1"
@@ -25,4 +31,5 @@ export XDG_RUNTIME_DIR=/data/data/com.termux/files/usr/tmp
 export PULSE_SERVER=127.0.0.1
 
 # Start desktop
-dbus-launch --exit-with-session startxfce4
+dbus-launch --exit-with-session
+startxfce4
